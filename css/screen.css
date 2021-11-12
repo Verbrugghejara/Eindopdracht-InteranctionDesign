@@ -1,0 +1,391 @@
+/*------------------------------------*\
+#FONTS
+\*------------------------------------*/
+
+/*------------------------------------*\
+#Variables
+\*------------------------------------*/
+
+:root {
+  /* Global colors */
+  --global-color-back: #6dbedf;
+  --global-color-front: white;
+
+  --global-color-circle-button: #e83f40;
+  --global-color-edge-button: #878888;
+  --global-color-side-button: #af2e2f;
+
+  --global-color-rand-coin: #d3880b;
+  --global-color-rand-background: #fdc845;
+  --global-color-rand-euro: #d3880b;
+
+  /* global page settings */
+  --global-html-color: var(--global-color-front);
+  --global-html-backgroundColor: var(--global-color-back);
+  --global-selection-backgroundColor: var(--global-color-front);
+
+  /* Baseline settings */
+  --global-baseline: 8px;
+  --global-whitespace: calc(var(--global-baseline) * 3); /* = 24px */
+
+  --global-whitespace-xs: calc(var(--global-baseline) / 2); /* = 4px */
+  --global-whitespace-sm: calc(var(--global-baseline) * 1); /*  = 8px */
+  --global-whitespace-md: calc(var(--global-baseline) * 2); /*  = 16px */
+  --global-whitespace-lg: calc(var(--global-baseline) * 4); /*  = 32px */
+  --global-whitespace-xl: calc(var(--global-whitespace) * 2); /*  = 48px */
+  --global-whitespace-xxl: calc(var(--global-whitespace) * 3); /*  = 72px */
+}
+
+/*------------------------------------*\
+  #GENERIC
+  \*------------------------------------*/
+
+/*
+      Generic: Page
+      ---
+      Global page styles + universal box-sizing:
+  */
+
+html {
+  font-size: 16px;
+  line-height: 1.5;
+  font-family: sans-serif;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background:var(--global-html-backgroundColor); */
+  flex-direction: column;
+}
+
+/*
+  * Remove text-shadow in selection highlight:
+  * https://twitter.com/miketaylr/status/12228805301
+  *
+  * Customize the background color to match your design.
+  */
+
+::selection {
+  background: var(--global-selection-backgroundColor);
+  color: white;
+  text-shadow: none;
+}
+
+/*------------------------------------*\
+  #Elements
+  \*------------------------------------*/
+
+/*------------------------------------*\
+  #OBJECTS
+  \*------------------------------------*/
+
+/*
+      Objects: List
+      ---
+      Small reusable object to remove default list styling from lists
+  */
+
+.o-list {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+
+/*
+      Object: Button reset
+      ---
+      Small button reset object
+  */
+
+.o-button-reset {
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  overflow: visible;
+  background: transparent;
+
+  /* inherit font & color from ancestor */
+  color: inherit;
+  font: inherit;
+
+  /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
+  line-height: normal;
+
+  /* Corrects font smoothing for webkit */
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+
+  /* Corrects inability to style clickable `input` types in iOS */
+  -webkit-appearance: none;
+}
+
+/*
+      Object: Hide accessible
+      ---
+      Accessibly hide any element
+  */
+
+.o-hide-accessible {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/*------------------------------------*\
+  #COMPONENTS
+  \*------------------------------------*/
+  /*
+      Component: select
+  */
+.c-list{
+  padding: 8px;
+}
+
+/*
+      Component: select
+  */
+.c-select {
+  color: blue;
+}
+
+/*
+      Component: loader
+  */
+.dots {
+  display: flex;
+  height: 24px;
+  /* justify-content: center;
+    align-items: center; */
+  /* right: 50%; */
+  margin-top: 16px;
+  transform: translate(2%, 0%);
+}
+.c-activity {
+  display: flex;
+  margin-top: 16px;
+}
+.c-output {
+  max-height: 100px;
+}
+
+.dots-load {
+  width: 20px;
+  height: 20px;
+  background-color: var(--global-color-circle-button);
+  border-radius: 50%;
+  margin-right: 15px;
+}
+/*
+      Component: coin
+  */
+
+.c-coins{
+  display: flex;
+  justify-content: center;
+}
+.c-coin-option{
+  padding: 8px;
+}
+.c-coin{
+  width: 25px;
+}
+.c-coin-rand {
+  fill: var(--global-color-rand-coin);
+}
+.c-coin-background {
+  fill: var(--global-color-rand-background);
+}
+.c-coin-euro {
+  fill: var(--global-color-rand-euro);
+}
+/*
+      Component: button
+  */
+
+.c-redButton {
+  max-width: 400px;
+  display: flex;
+  margin: 0 auto;
+  margin-bottom: 16px;
+}
+.c-redButton-circle {
+  fill: var(--global-color-circle-button);
+}
+.c-redButton-edge {
+  fill: var(--global-color-edge-button);
+}
+
+.c-redButton-side {
+  fill: var(--global-color-side-button);
+}
+
+/*
+    Component: Forms
+    ---
+    Everything form related here
+*/
+
+.c-form-field--option {
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  -ms-align-items: center;
+  align-items: center;
+}
+
+/*
+    Component: Input
+    ---
+    Class to put on all input="text" like form inputs
+*/
+
+.c-option {
+  margin-right: var(--global-whitespace-sm);
+}
+
+
+/*
+    Component: Label
+    ---
+    Class to put on all form labels
+*/
+
+.c-label {
+  display: flex;
+  padding-right: 16px;
+  padding-left: 16px;
+}
+
+.c-label--option {
+}
+/*
+    Component: Custom option
+*/
+.c-custom-option {
+  /* --custom-option__symbol-Fill: var(--global-color-alpha);
+  display: flex;
+  align-items: center; */
+}
+.o-off {
+  display: flex;
+  position: absolute;
+  margin: 0;
+  padding-left: 5px;
+  padding-top: 1px;
+}
+.c-custom-input {
+  width: 50px;
+  height: 21px;
+  color: white;
+}
+.c-input{
+  display: flex;
+  justify-content: center;
+}
+.c-custom-option__fake-input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 200px;
+  margin-right: var(--global-whitespace-sm);
+}
+/*
+      Component: Controls
+  */
+
+/*------------------------------------*\
+  #UTILITIES
+  \*------------------------------------*/
+.u-muted {
+  display: none;
+  margin-top: 24px;
+}
+/*------------------------------------*\
+  #MEDIA
+  \*------------------------------------*/
+
+/*
+      Print styles.
+      ---
+      Inlined to avoid the additional HTTP request:
+      http://www.phpied.com/delay-loading-your-print-css/
+  */
+
+@media print {
+  *,
+  *:before,
+  *:after {
+    background: transparent !important;
+    color: #000 !important;
+    /* Black prints faster:
+          http://www.sanbeiji.com/archives/953 */
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+  a[href]:after {
+    content: ' (' attr(href) ')';
+  }
+  abbr[title]:after {
+    content: ' (' attr(title) ')';
+  }
+  /*
+      * Don't show links that are fragment identifiers,
+      * or use the `javascript:` pseudo protocol
+      */
+  a[href^='#']:after,
+  a[href^='javascript:']:after {
+    content: '';
+  }
+  pre {
+    white-space: pre-wrap !important;
+  }
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+  /*
+      * Printing Tables:
+      * http://css-discuss.incutio.com/wiki/Printing_Tables
+      */
+  thead {
+    display: table-header-group;
+  }
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+}
