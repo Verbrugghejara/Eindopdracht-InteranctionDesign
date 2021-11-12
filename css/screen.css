@@ -18,6 +18,7 @@
   --global-color-rand-coin: #d3880b;
   --global-color-rand-background: #fdc845;
   --global-color-rand-euro: #d3880b;
+  --global-color-person: black;
 
   /* global page settings */
   --global-html-color: var(--global-color-front);
@@ -102,7 +103,17 @@ body {
   list-style: none;
   padding: 0;
 }
-
+.o-list-type {
+  list-style: none;
+  padding: 0;
+}
+.c-option-list{
+  margin: 0;
+  padding-bottom: 8px;
+}
+.c-list{
+  display: flex;
+}
 /*
       Object: Button reset
       ---
@@ -149,14 +160,26 @@ body {
   border: 0;
 }
 
+.o-hide-display {
+  opacity: 0;
+}
+
+.o-section {
+  display: flex;
+
+  /* position: absolute; */
+}
+.o-secton-button {
+  display: block;
+}
 /*------------------------------------*\
   #COMPONENTS
   \*------------------------------------*/
-  /*
-      Component: select
-  */
-.c-list{
-  padding: 8px;
+.c-person {
+
+}
+.c-person-color{
+  color: var(--global-color-person);
 }
 
 /*
@@ -197,15 +220,19 @@ body {
       Component: coin
   */
 
-.c-coins{
+.c-coins {
   display: flex;
   justify-content: center;
 }
-.c-coin-option{
+.c-coin-option {
   padding: 8px;
 }
-.c-coin{
+.c-coin {
   width: 25px;
+}
+.c-person{
+  width: 35px;
+  padding: 4px;
 }
 .c-coin-rand {
   fill: var(--global-color-rand-coin);
@@ -261,7 +288,6 @@ body {
   margin-right: var(--global-whitespace-sm);
 }
 
-
 /*
     Component: Label
     ---
@@ -270,6 +296,7 @@ body {
 
 .c-label {
   display: flex;
+  justify-content: center;
   padding-right: 16px;
   padding-left: 16px;
 }
@@ -284,21 +311,14 @@ body {
   display: flex;
   align-items: center; */
 }
-.o-off {
-  display: flex;
-  position: absolute;
-  margin: 0;
-  padding-left: 5px;
-  padding-top: 1px;
-}
 .c-custom-input {
-  width: 50px;
-  height: 21px;
-  color: white;
-}
-.c-input{
   display: flex;
   justify-content: center;
+  align-items: center;
+}
+.c-input {
+  width: 50px;
+  height: 21px;
 }
 .c-custom-option__fake-input {
   display: flex;
@@ -306,7 +326,6 @@ body {
   justify-content: center;
   width: 200px;
   height: 200px;
-  margin-right: var(--global-whitespace-sm);
 }
 /*
       Component: Controls
@@ -317,7 +336,6 @@ body {
   \*------------------------------------*/
 .u-muted {
   display: none;
-  margin-top: 24px;
 }
 /*------------------------------------*\
   #MEDIA
