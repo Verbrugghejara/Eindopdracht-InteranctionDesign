@@ -1,7 +1,16 @@
 /*------------------------------------*\
 #FONTS
 \*------------------------------------*/
-
+@font-face {
+  font-family: 'MPlus';
+  font-weight: 400;
+  src: url('../fonts/MPLUS1-Regular.woff2');
+}
+@font-face {
+  font-family: 'MPlus';
+  font-weight: 600;
+  src: url('../fonts/MPLUS1-Medium.woff2');
+}
 /*------------------------------------*\
 #Variables
 \*------------------------------------*/
@@ -11,14 +20,26 @@
   --global-color-back: #6dbedf;
   --global-color-front: white;
 
-  --global-color-circle-button: #e83f40;
-  --global-color-edge-button: #878888;
-  --global-color-side-button: #af2e2f;
+  --global-color-red-x-light:#ffe8e8;
+  --global-color-red-light:#FF7171;
+  --global-color-red-neutral:#e83f40;
+  --global-color-red-dark:#af2e2f;
+  --global-color-red-x-dark:#6A0000;
 
   --global-color-rand-coin: #d3880b;
   --global-color-rand-background: #fdc845;
   --global-color-rand-euro: #d3880b;
   --global-color-person: black;
+
+  --global-color-neutral-xxxx-light: #f0f0f7;
+  --global-color-neutral-xxx-light: #ebebf2;
+  --global-color-neutral-xx-light: #d7dae2;
+  --global-color-neutral-x-light: #bcbccb;
+  --global-color-neutral-light: #a5a4bf;
+  --global-color-neutral: #878888;
+  --global-color-neutral-dark: #4d4f5c;
+  --global-color-neutral-x-dark: #43425d;
+  --global-color-neutral-xx-dark: #3b3b53;
 
   /* global page settings */
   --global-html-color: var(--global-color-front);
@@ -35,6 +56,9 @@
   --global-whitespace-lg: calc(var(--global-baseline) * 4); /*  = 32px */
   --global-whitespace-xl: calc(var(--global-whitespace) * 2); /*  = 48px */
   --global-whitespace-xxl: calc(var(--global-whitespace) * 3); /*  = 72px */
+
+  /* Shadows */
+  --global-box-shadow: 0 0 0 3px rgba(84, 0, 0, 0.05), 0 4px 5px rgba(84, 0, 0, 0.4);
 }
 
 /*------------------------------------*\
@@ -48,28 +72,24 @@
   */
 
 html {
-  font-size: 16px;
+  font-size: var(--global-whitespace-md);
   line-height: 1.5;
-  font-family: sans-serif;
+  font-family:'MPlus', sans-serif;
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+@media (min-width: 550px) {
+  html{
+    font-size: 20px;
+  }
+}
 *,
 *:before,
 *:after {
   box-sizing: inherit;
 }
 
-body {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* background:var(--global-html-backgroundColor); */
-  flex-direction: column;
-}
 
 /*
   * Remove text-shadow in selection highlight:
@@ -79,11 +99,10 @@ body {
   */
 
 ::selection {
-  background: var(--global-selection-backgroundColor);
+  background: var(--global-color-red-neutral);
   color: white;
   text-shadow: none;
 }
-
 /*------------------------------------*\
   #Elements
   \*------------------------------------*/
@@ -99,7 +118,6 @@ body {
   */
 
 .o-list {
-  display: flex;
   list-style: none;
   padding: 0;
 }
@@ -107,11 +125,17 @@ body {
   list-style: none;
   padding: 0;
 }
-.c-option-list{
-  margin: 0;
-  padding-bottom: 8px;
+.o-text{
+  max-width: 275px;
+  padding-top: var(--global-baseline);
+  padding-bottom: 6px;
 }
-.c-list{
+@media (min-width: 550px) {
+  .o-text{
+    max-width: 500px;
+  }
+}
+.c-list {
   display: flex;
 }
 /*
@@ -148,7 +172,14 @@ body {
       ---
       Accessibly hide any element
   */
-
+  .o-free{
+    display: flex;
+    justify-items: start;
+    margin: 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    bottom: 30px;
+  }
 .o-hide-accessible {
   position: absolute;
   width: 1px;
@@ -164,29 +195,110 @@ body {
   opacity: 0;
 }
 
-.o-section {
-  display: flex;
-
-  /* position: absolute; */
-}
-.o-secton-button {
-  display: block;
-}
 /*------------------------------------*\
   #COMPONENTS
   \*------------------------------------*/
-.c-person {
+  /*
+    Component: Option list
+    ---
 
+*/
+
+.c-option-list {
+  display: flex;
 }
-.c-person-color{
-  color: var(--global-color-person);
+
+
+  /*
+    Component: Forms
+    ---
+    Everything form related here
+*/
+
+.c-form-field {
+  position: relative;
+}
+
+.c-form-field--option {
+  display: flex;
+  align-items: center;
+}
+/*
+      Component: topic
+  */
+.c-topic{
+  display: block;
+  position: relative;
+  justify-content: center;
+  padding-right:var(--global-baseline);
+  padding-left: var(--global-baseline);
+  outline: none;
+}
+
+.c-topic:hover,
+.c-topic:active{
+color: var(--global-color-red-neutral);
+}
+.c-option--hidden:focus + .c-topic{
+  color: var(--global-color-red-neutral );
+}
+
+.c-topic-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0 8px 0;
+  /* height: 150px; */
+  margin: 0 var(--global-whitespace-md) 0 var(--global-whitespace-md);
+  /* padding: 16px; */
+  background-color: var(--global-color-red-x-light);
+  border-radius: 25px;
+  box-shadow: var(--global-box-shadow);
+}
+
+@media (min-width: 550px) {
+  .c-topic-box{
+    justify-self: center;
+    width: 550px;
+  }
+}
+.c-explanation{
+  display: block;
+  text-align: center;
+}
+/*
+      Component: top of page
+  */
+.c-body {
+  /* --c-app__topbar-height: calc(var(--global-baseline) * 14); */
+  min-height: 100vh;
+  background-color: var(--global-color-red-light);
+}
+.c-grid{
+  grid-template-rows: 45px 140px 125px 175px;
+  grid-gap: var(--global-whitespace-lg);
+  display: grid;
+}
+@media (min-width: 550px) {
+  .c-grid{
+  grid-template-rows: 55px 175px 250px 200px;
+  }
+}
+.c-topbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* padding-top: 16px; */
+  box-shadow: var(--global-box-shadow);
+  background-color: var(--global-color-red-x-light);
+  /* grid-row: 20px; */
 }
 
 /*
       Component: select
   */
 .c-select {
-  color: blue;
+  color: var(--global-color-red-neutral);
 }
 
 /*
@@ -194,45 +306,50 @@ body {
   */
 .dots {
   display: flex;
-  height: 24px;
+  height: var(--global-whitespace);
   /* justify-content: center;
     align-items: center; */
-  /* right: 50%; */
-  margin-top: 16px;
-  transform: translate(2%, 0%);
+  /* margin-top: 100px; */
+  transform: translate(7%, 0%);
 }
-.c-activity {
-  display: flex;
-  margin-top: 16px;
-}
-.c-output {
+
+.c-output-item {
   max-height: 100px;
 }
 
 .dots-load {
   width: 20px;
   height: 20px;
-  background-color: var(--global-color-circle-button);
+  background-color: var(--global-color-red-neutral);
   border-radius: 50%;
   margin-right: 15px;
+}
+@media (min-width: 550px) {
+  .dots-load{
+    width: 25px;
+    height: 25px;
+  }
 }
 /*
       Component: coin
   */
 
-.c-coins {
-  display: flex;
-  justify-content: center;
-}
-.c-coin-option {
-  padding: 8px;
-}
 .c-coin {
   width: 25px;
+  margin: 4px;
 }
-.c-person{
+.c-person {
   width: 35px;
   padding: 4px;
+  fill: var(--global-color-red-x-dark);
+}
+@media (min-width: 550px) {
+  .c-coin{
+    width: 35px;
+  }
+  .c-person {
+    width: 45px;
+  }
 }
 .c-coin-rand {
   fill: var(--global-color-rand-coin);
@@ -246,47 +363,34 @@ body {
 /*
       Component: button
   */
+  .c-button{
+    outline: none;
+  }
+  .c-button:focus{
+    border: 2px solid var(--global-color-red-neutral);
+  }
+.c-explanation__item{
+  padding: 0;
+  margin: 0;
+}
 
 .c-redButton {
-  max-width: 400px;
+  /* max-width: 400px; */
   display: flex;
   margin: 0 auto;
-  margin-bottom: 16px;
 }
+
 .c-redButton-circle {
-  fill: var(--global-color-circle-button);
+  fill: var(--global-color-red-neutral);
 }
 .c-redButton-edge {
-  fill: var(--global-color-edge-button);
+  fill: var(--global-color-neutral);
 }
 
 .c-redButton-side {
-  fill: var(--global-color-side-button);
+  fill: var(--global-color-red-dark);
 }
 
-/*
-    Component: Forms
-    ---
-    Everything form related here
-*/
-
-.c-form-field--option {
-  display: -webkit-flex;
-  display: -ms-flex;
-  display: flex;
-  -ms-align-items: center;
-  align-items: center;
-}
-
-/*
-    Component: Input
-    ---
-    Class to put on all input="text" like form inputs
-*/
-
-.c-option {
-  margin-right: var(--global-whitespace-sm);
-}
 
 /*
     Component: Label
@@ -295,47 +399,98 @@ body {
 */
 
 .c-label {
-  display: flex;
+  display: block;
+  position: relative;
   justify-content: center;
-  padding-right: 16px;
-  padding-left: 16px;
+  padding-right:var(--global-baseline);
+  padding-left: var(--global-baseline);
+  outline: none;
+}
+/* .c-label:focus{
+  border: 2px solid blue;
+} */
+.c-label::after{
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0.1em;
+  background-color: var(--global-color-red-light);
+  opacity: 0;
+  transition: opacity 400ms, transform 400ms;
 }
 
-.c-label--option {
+
+
+.c-label:hover::after{
+  opacity: 1;
+  transform: translate3d(0, 0.2em, 0);
 }
+
+.c-option--hidden:focus +.c-label::after{
+  opacity: 1;
+  transform: translate3d(0, 0.2em, 0);
+}
+
 /*
-    Component: Custom option
+    Component: input
 */
-.c-custom-option {
-  /* --custom-option__symbol-Fill: var(--global-color-alpha);
-  display: flex;
-  align-items: center; */
-}
 .c-custom-input {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: var(--global-baseline);
 }
 .c-input {
   width: 50px;
-  height: 21px;
+  height: 22px;
+  outline: none;
+  border: 1px solid var(--global-color-red-neutral);
+  border-radius: 15px;
+  text-align: center;
 }
 .c-custom-option__fake-input {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 200px;
-  height: 200px;
+  width: 125px;
+  height: 125px;
 }
-/*
-      Component: Controls
-  */
+
+
+
+@media (min-width: 550px) {
+  .c-custom-option__fake-input{
+    width: 250px;
+  }
+  .c-input{
+    height: 30px;
+    width: 57px;
+  }
+}
 
 /*------------------------------------*\
   #UTILITIES
   \*------------------------------------*/
 .u-muted {
   display: none;
+}
+.u-text-align_center {
+  display: block;
+  text-align: center;
+}
+.u-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+}
+
+.u-text__lg{
+  font-weight: 600;
+  color: var(--global-color-red-neutral);
 }
 /*------------------------------------*\
   #MEDIA
