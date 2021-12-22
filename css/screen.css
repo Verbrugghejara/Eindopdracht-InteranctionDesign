@@ -72,7 +72,7 @@
   */
 
 html {
-  font-size: var(--global-whitespace-md);
+  font-size: 16px;
   line-height: 1.5;
   font-family:'MPlus', sans-serif;
   box-sizing: border-box;
@@ -81,7 +81,7 @@ html {
 }
 @media (min-width: 550px) {
   html{
-    font-size: 20px;
+    font-size: 1.25rem;
   }
 }
 *,
