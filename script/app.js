@@ -28,7 +28,7 @@ const getRandom = async () => {
   output.classList.add('u-muted');
   //participants.classList.add('u-muted');
   loaderclass.classList.remove('u-muted');
-  endPoint = 'http://www.boredapi.com/api/activity';
+  endPoint = 'https://www.boredapi.com/api/activity';
 
   // Eerst bouwen we onze url op -------------------------------------------------------
   if (topic == 'price') {
